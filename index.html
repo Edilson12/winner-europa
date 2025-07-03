@@ -23,11 +23,13 @@
         body {
             background-color: #FFA500; /* Naranja (RGB: 255, 165, 0) */
             display: flex;
+            flex-direction: column; /* Para que los botones se apilen verticalmente */
             justify-content: center;
             align-items: center;
             min-height: 100vh; /* Ocupa toda la altura de la pantalla */
             margin: 0;
             font-family: Arial, sans-serif; /* Tipo de fuente básico */
+            gap: 20px; /* Espacio entre los botones */
         }
 
         .button-container {
@@ -46,10 +48,21 @@
             text-decoration: none; /* Quita el subrayado del enlace */
             display: inline-block; /* Para que el padding y tamaño funcionen bien */
             transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+            min-width: 280px; /* Asegura que ambos botones tengan un ancho mínimo similar */
+            box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
         }
 
         .main-button:hover {
             background-color: #2E8B57; /* Un verde un poco más oscuro al pasar el ratón */
+        }
+
+        /* Estilo específico para el botón de registro, si quieres un color diferente */
+        .register-button {
+            background-color: #4682B4; /* Azul acero (SteelBlue) */
+        }
+
+        .register-button:hover {
+            background-color: #366792; /* Azul acero más oscuro al pasar el ratón */
         }
     </style>
 </head>
@@ -58,6 +71,13 @@
         <a href="https://script.google.com/macros/s/AKfycbwzrntBQ4oJAqj0LMbe5-sC1ZMDbu8bVYaeLXewa-0X/dev"
            target="_blank" class="main-button">
             INGRESA A WINNER EUROPA
+        </a>
+    </div>
+
+    <div class="button-container">
+        <a href="https://forms.gle/NxGV1ZB1Wt9KDd6z7"
+           target="_blank" class="main-button register-button">
+            REGÍSTRATE AQUÍ
         </a>
     </div>
 </body>
