@@ -64,6 +64,13 @@
         .register-button:hover {
             background-color: #366792; /* Azul acero más oscuro al pasar el ratón */
         }
+
+        /* Puedes añadir estilos para el botón de PayPal aquí si lo necesitas */
+        /* Por ejemplo, si PayPal te da un botón de imagen y quieres centrarlo */
+        .paypal-button-container {
+            text-align: center;
+            /* Puedes añadir más estilos si es necesario para que se vea bien con los otros botones */
+        }
     </style>
 </head>
 <body>
@@ -75,10 +82,18 @@
     </div>
 
     <div class="button-container">
-        <a href="https://forms.gle/NxGV1ZB1Wt9KDd6z7"
+        <a href="TU_ENLACE_DE_GOOGLE_FORMS_AQUI"
            target="_blank" class="main-button register-button">
             REGÍSTRATE AQUÍ
         </a>
     </div>
-</body>
+
+    <div class="<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="UUHTF7ZJ8KGKW" />
+  <input type="hidden" name="currency_code" value="EUR" />
+  <input type="image" src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal es una forma segura y fácil de pagar en línea." alt="Comprar ahora" />
+</form>">
+        </div>
+    </body>
 </html>
