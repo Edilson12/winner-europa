@@ -32,7 +32,6 @@
             gap: 20px; 
             background-size: cover;
             background-position: center;
-            /* Aumentamos el tiempo de transición para que sea más obvio si algo cambia */
             transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out; 
         }
 
@@ -43,14 +42,14 @@
 
         /* Clase para la imagen de fondo */
         body.image-bg {
-            background-image: url('URL_DE_TU_IMAGEN_DE_FONDO_AQUI.jpg'); /* REEMPLAZA ESTO CON LA RUTA DE TU IMAGEN */
+            background-image: url('fondo_winner.jpg'); /* YA REEMPLAZADO AQUÍ */
             background-color: transparent; 
         }
 
         .button-container {
             text-align: center;
             position: relative; 
-            z-index: 2; /* Para que los botones estén por encima de la imagen de fondo */
+            z-index: 2;
         }
 
         .main-button {
@@ -145,7 +144,7 @@
 
     <script>
         // Aseguramos que la imagen de fondo se precargue
-        const backgroundImageURL = 'fondo_winner.jpg'; // REEMPLAZA ESTO OTRA VEZ
+        const backgroundImageURL = 'fondo_winner.jpg'; // YA REEMPLAZADO AQUÍ
         const img = new Image();
         img.src = backgroundImageURL;
 
