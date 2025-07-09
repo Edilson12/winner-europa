@@ -22,7 +22,6 @@
     
     <style> 
         body {
-            /* QUITAMOS el background-color directo del body aquí */
             display: flex;
             flex-direction: column; 
             justify-content: center;
@@ -31,28 +30,27 @@
             margin: 0;
             font-family: Arial, sans-serif;
             gap: 20px; 
-            /* El fondo inicial y la transición se manejarán con las clases CSS y JS */
-            background-size: cover; /* Asegura que la imagen cubra todo */
-            background-position: center; /* Centra la imagen */
-            transition: background-image 1s ease-in-out, background-color 1s ease-in-out; /* Transición suave */
+            background-size: cover;
+            background-position: center;
+            /* Aumentamos el tiempo de transición para que sea más obvio si algo cambia */
+            transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out; 
         }
 
         /* Clase inicial: fondo naranja */
         body.initial-bg {
-            background-color: #FFA500; /* Naranja (RGB: 255, 165, 0) */
+            background-color: #FFA500;
         }
 
         /* Clase para la imagen de fondo */
         body.image-bg {
-            background-image: url('fondo_winner.jpg'); /* REEMPLAZA ESTO CON LA RUTA DE TU IMAGEN */
-            background-color: transparent; /* Aseguramos que el color de fondo no estorbe */
+            background-image: url('URL_DE_TU_IMAGEN_DE_FONDO_AQUI.jpg'); /* REEMPLAZA ESTO CON LA RUTA DE TU IMAGEN */
+            background-color: transparent; 
         }
 
         .button-container {
             text-align: center;
-            /* Aseguramos que los botones siempre estén visibles por encima del fondo */
             position: relative; 
-            z-index: 2; /* Para que estén por encima de la imagen de fondo */
+            z-index: 2; /* Para que los botones estén por encima de la imagen de fondo */
         }
 
         .main-button {
@@ -146,16 +144,32 @@
     </a>
 
     <script>
-        // Cuando la página se carga
-        window.onload = function() {
+        // Aseguramos que la imagen de fondo se precargue
+        const backgroundImageURL = 'fondo_winner.jpg'; // REEMPLAZA ESTO OTRA VEZ
+        const img = new Image();
+        img.src = backgroundImageURL;
+
+        // Esperar a que el DOM esté completamente cargado y la imagen precargada
+        img.onload = function() {
             const body = document.body;
-            // Espera 2 segundos (2000 milisegundos)
+            // Espera 2 segundos (2000 milisegundos) DESPUÉS de que la imagen esté lista
             setTimeout(() => {
-                // Elimina la clase del fondo inicial y añade la clase de la imagen
                 body.classList.remove('initial-bg');
                 body.classList.add('image-bg');
             }, 2000); // 2 segundos
         };
+
+        // En caso de error de carga de imagen, o si la imagen ya está en caché y onload no se dispara
+        // Una pequeña redundancia para mayor fiabilidad
+        document.addEventListener('DOMContentLoaded', () => {
+            if (img.complete) { // Si la imagen ya cargó (por caché o muy rápido)
+                const body = document.body;
+                setTimeout(() => {
+                    body.classList.remove('initial-bg');
+                    body.classList.add('image-bg');
+                }, 2000);
+            }
+        });
     </script>
 </body>
 </html>
