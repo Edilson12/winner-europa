@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winner Europa</title>
 
-    <link rel="icon" type="image/png" href="trebol5.PNG">
-
-    <link rel="apple-touch-icon" href="trebol5.PNG">
-    <link rel="apple-touch-icon" sizes="180x180" href="trebol5.PNG">
+    <link rel="icon" type="image/png" href="trebol5.png">
+    <link rel="apple-touch-icon" href="trebol5.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="trebol5.png">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Winner Europa">
 
-    <link rel="icon" sizes="192x192" href="trebol5.PNG">
-    <link rel="shortcut icon" sizes="196x196" href="trebol5.PNG">
+    <link rel="icon" sizes="192x192" href="trebol5.png">
+    <link rel="shortcut icon" sizes="196x196" href="trebol5.png">
 
     <meta name="theme-color" content="#FFA500">
 
-    <link rel="manifest" href="manifest.json">
-    
+    <link rel="manifest" href="manifest.json"> 
+
     <style> 
         body {
             background-color: #FFA500; /* Naranja (RGB: 255, 165, 0) */
@@ -58,7 +57,7 @@
             background-color: #2E8B57; /* Un verde un poco más oscuro al pasar el ratón */
         }
 
-        /* Estilo específico para el botón de registro, si quieres un color diferente */
+        /* Estilo específico para el botón de registro */
         .register-button {
             background-color: #4682B4; /* Azul acero (SteelBlue) */
         }
@@ -67,11 +66,38 @@
             background-color: #366792; /* Azul acero más oscuro al pasar el ratón */
         }
 
-        /* Puedes añadir estilos para el botón de PayPal aquí si lo necesitas */
-        /* Por ejemplo, si PayPal te da un botón de imagen y quieres centrarlo */
-        .paypal-button-container {
-            text-align: center;
-            /* Puedes añadir más estilos si es necesario para que se vea bien con los otros botones */
+        /* Nuevo estilo para el botón de pago */
+        .payment-button {
+            background-color: #FFC439; /* Amarillo/Dorado de PayPal */
+            color: #142850; /* Azul oscuro de PayPal para el texto */
+        }
+
+        .payment-button:hover {
+            background-color: #E6B02E; /* Un amarillo/dorado más oscuro al pasar el ratón */
+        }
+
+        /* ESTILOS PARA EL BOTÓN DE WHATSAPP FLOTANTE */
+        .whatsapp-button {
+            position: fixed; /* Lo fija en la pantalla */
+            bottom: 20px; /* Distancia desde abajo */
+            right: 20px; /* Distancia desde la derecha */
+            background-color: #25D366; /* Color verde de WhatsApp */
+            color: white; /* Texto blanco */
+            border-radius: 50%; /* Lo hace circular */
+            width: 60px; /* Ancho del círculo */
+            height: 60px; /* Alto del círculo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px; /* Tamaño del icono */
+            text-decoration: none; /* Quita el subrayado */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Sombra para que destaque */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #1DA851; /* Verde más oscuro al pasar el ratón */
         }
     </style>
 </head>
@@ -84,16 +110,23 @@
     </div>
 
     <div class="button-container">
-        <a href="https://forms.gle/GvPKdeRVFPbBRWeB9"
+        <a href="TU_ENLACE_DE_GOOGLE_FORMS_AQUI"
            target="_blank" class="main-button register-button">
             REGÍSTRATE AQUÍ
         </a>
     </div>
 
     <div class="button-container">
-            <a href="https://www.paypal.com/ncp/payment/MGBSAZ22BGXMU"
-               target="_blank" class="main-button payment-button">
-                PAGAR AHORA
-            </a>
-    </body>
+        <a href="https://buy.stripe.com/8x2bITgGedDJbgl59C1kA00"
+           target="_blank" class="main-button payment-button">
+            PAGAR CON TAJETA
+        </a>
+    </div>
+
+    <a href="https://wa.me/41783286271?text=Hola%2C%20quiero%20mas%20informacion%20sobre%20Winner%20Europa" 
+       target="_blank" 
+       class="whatsapp-button" 
+       title="Comunícate con nosotros por WhatsApp">
+        &#x2709; </a>
+</body>
 </html>

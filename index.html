@@ -17,91 +17,106 @@
     <link rel="shortcut icon" sizes="196x196" href="trebol5.png">
 
     <meta name="theme-color" content="#FFA500">
-
+    
     <link rel="manifest" href="manifest.json"> 
-
+    
     <style> 
         body {
-            background-color: #FFA500; /* Naranja (RGB: 255, 165, 0) */
+            /* QUITAMOS el background-color directo del body aquí */
             display: flex;
-            flex-direction: column; /* Para que los botones se apilen verticalmente */
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+            min-height: 100vh; 
             margin: 0;
-            font-family: Arial, sans-serif; /* Tipo de fuente básico */
-            gap: 20px; /* Espacio entre los botones */
+            font-family: Arial, sans-serif;
+            gap: 20px; 
+            /* El fondo inicial y la transición se manejarán con las clases CSS y JS */
+            background-size: cover; /* Asegura que la imagen cubra todo */
+            background-position: center; /* Centra la imagen */
+            transition: background-image 1s ease-in-out, background-color 1s ease-in-out; /* Transición suave */
+        }
+
+        /* Clase inicial: fondo naranja */
+        body.initial-bg {
+            background-color: #FFA500; /* Naranja (RGB: 255, 165, 0) */
+        }
+
+        /* Clase para la imagen de fondo */
+        body.image-bg {
+            background-image: url('fondo_winner.jpg'); /* REEMPLAZA ESTO CON LA RUTA DE TU IMAGEN */
+            background-color: transparent; /* Aseguramos que el color de fondo no estorbe */
         }
 
         .button-container {
             text-align: center;
+            /* Aseguramos que los botones siempre estén visibles por encima del fondo */
+            position: relative; 
+            z-index: 2; /* Para que estén por encima de la imagen de fondo */
         }
 
         .main-button {
-            background-color: #3CB371; /* Verde más claro (MediumSeaGreen) */
-            color: #000000; /* Texto negro */
-            padding: 20px 40px; /* Relleno similar al de la app */
-            font-size: 20px; /* Tamaño de fuente */
-            font-weight: bold; /* Negrita */
-            border: none; /* Sin borde */
-            border-radius: 8px; /* Bordes ligeramente redondeados */
-            cursor: pointer; /* Cambia el cursor al pasar por encima */
-            text-decoration: none; /* Quita el subrayado del enlace */
-            display: inline-block; /* Para que el padding y tamaño funcionen bien */
-            transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
-            min-width: 280px; /* Asegura que ambos botones tengan un ancho mínimo similar */
-            box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
+            background-color: #3CB371;
+            color: #000000;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            min-width: 280px;
+            box-sizing: border-box;
         }
 
         .main-button:hover {
-            background-color: #2E8B57; /* Un verde un poco más oscuro al pasar el ratón */
+            background-color: #2E8B57;
         }
 
-        /* Estilo específico para el botón de registro */
         .register-button {
-            background-color: #4682B4; /* Azul acero (SteelBlue) */
+            background-color: #4682B4;
         }
 
         .register-button:hover {
-            background-color: #366792; /* Azul acero más oscuro al pasar el ratón */
+            background-color: #366792;
         }
 
-        /* Nuevo estilo para el botón de pago */
         .payment-button {
-            background-color: #FFC439; /* Amarillo/Dorado de PayPal */
-            color: #142850; /* Azul oscuro de PayPal para el texto */
+            background-color: #6772E5;
+            color: white;
         }
 
         .payment-button:hover {
-            background-color: #E6B02E; /* Un amarillo/dorado más oscuro al pasar el ratón */
+            background-color: #5560CD;
         }
 
-        /* ESTILOS PARA EL BOTÓN DE WHATSAPP FLOTANTE */
         .whatsapp-button {
-            position: fixed; /* Lo fija en la pantalla */
-            bottom: 20px; /* Distancia desde abajo */
-            right: 20px; /* Distancia desde la derecha */
-            background-color: #25D366; /* Color verde de WhatsApp */
-            color: white; /* Texto blanco */
-            border-radius: 50%; /* Lo hace circular */
-            width: 60px; /* Ancho del círculo */
-            height: 60px; /* Alto del círculo */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px; /* Tamaño del icono */
-            text-decoration: none; /* Quita el subrayado */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Sombra para que destaque */
-            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
             transition: background-color 0.3s ease;
         }
 
         .whatsapp-button:hover {
-            background-color: #1DA851; /* Verde más oscuro al pasar el ratón */
+            background-color: #1DA851;
         }
     </style>
 </head>
-<body>
+<body class="initial-bg">
     <div class="button-container">
         <a href="https://script.google.com/macros/s/AKfycbwzrntBQ4oJAqj0LMbe5-sC1ZMDbu8bVYaeLXewa-0X/dev"
            target="_blank" class="main-button">
@@ -117,16 +132,30 @@
     </div>
 
     <div class="button-container">
-        <a href="https://buy.stripe.com/8x2bITgGedDJbgl59C1kA00"
+        <a href="TU_ENLACE_DE_STRIPE_AQUI"
            target="_blank" class="main-button payment-button">
-            PAGAR CON TAJETA
+            PAGAR CON TARJETA
         </a>
     </div>
 
-    <a href="https://wa.me/41783286271?text=Hola%2C%20quiero%20mas%20informacion%20sobre%20Winner%20Europa" 
+    <a href="TU_ENLACE_DE_WHATSAPP_AQUI" 
        target="_blank" 
        class="whatsapp-button" 
        title="Comunícate con nosotros por WhatsApp">
-        &#x2709; </a>
+        &#x2709; 
+    </a>
+
+    <script>
+        // Cuando la página se carga
+        window.onload = function() {
+            const body = document.body;
+            // Espera 2 segundos (2000 milisegundos)
+            setTimeout(() => {
+                // Elimina la clase del fondo inicial y añade la clase de la imagen
+                body.classList.remove('initial-bg');
+                body.classList.add('image-bg');
+            }, 2000); // 2 segundos
+        };
+    </script>
 </body>
 </html>
