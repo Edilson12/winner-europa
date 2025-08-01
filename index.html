@@ -150,7 +150,8 @@
             border-radius: 5px;
             font-size: 24px; /* Tamaño grande para el cronómetro */
             font-weight: bold;
-            display: none; /* Inicialmente oculto */
+            /* CAMBIO CLAVE: display: block; por defecto para asegurar que se "vea" */
+            display: block; 
             min-width: 220px; /* Mismo ancho que el botón */
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -158,6 +159,13 @@
     </style>
 </head>
 <body class="initial-bg">
+    <div class="countdown-container">
+        <button id="countdownButton" class="countdown-button">
+            El sorteo comienza en...
+        </button>
+        <div id="countdown-timer">00:00:00</div>
+    </div>
+
     <div class="button-container">
         <a href="https://script.google.com/macros/s/AKfycbwzrntBQ4oJAqj0LMbe5-sC1ZMDbu8bVYaeLXewa-0X/dev"
            target="_blank" class="main-button">
@@ -185,13 +193,6 @@
        title="Comunícate con nosotros por WhatsApp">
         &#x2709; 
     </a>
-
-    <div class="countdown-container">
-        <button id="countdownButton" class="countdown-button">
-            El sorteo comienza en...
-        </button>
-        <div id="countdown-timer">00:00:00</div>
-    </div>
 
     <script>
         // Aseguramos que la imagen de fondo se precargue
@@ -221,55 +222,57 @@
         });
 
         // LÓGICA DEL CRONÓMETRO
-        let countdownDate; // La fecha y hora en que termina el cronómetro
+        let countdownDate; 
         const countdownTimerElement = document.getElementById('countdown-timer');
         const countdownButton = document.getElementById('countdownButton');
 
+        // Función para configurar el cronómetro
         function setupCountdown() {
-            // Intentar recuperar la fecha final del sorteo desde el almacenamiento local
+            console.log("setupCountdown iniciado."); // Depuración: Ver si la función se llama
+            // Ocultar el cronómetro al inicio, ya que CSS lo muestra por defecto
+            countdownTimerElement.style.display = 'none'; 
+
             const storedCountdownDate = localStorage.getItem('winnerEuropaCountdown');
 
             if (storedCountdownDate) {
-                // Si ya existe, usa la fecha almacenada
                 countdownDate = new Date(storedCountdownDate).getTime();
+                console.log("Fecha de cronómetro recuperada de localStorage:", new Date(countdownDate));
             } else {
-                // Si no existe, calcula 24 horas a partir de ahora y guárdala
-                countdownDate = new Date().getTime() + (24 * 60 * 60 * 1000); // 24 horas en milisegundos
+                countdownDate = new Date().getTime() + (24 * 60 * 60 * 1000); 
                 localStorage.setItem('winnerEuropaCountdown', new Date(countdownDate).toISOString());
+                console.log("Nueva fecha de cronómetro establecida y guardada:", new Date(countdownDate));
             }
 
-            // Actualiza el cronómetro cada 1 segundo
             const countdownInterval = setInterval(updateCountdown, 1000);
 
-            // Listener para el botón, para mostrar el cronómetro
             countdownButton.addEventListener('click', () => {
-                countdownTimerElement.style.display = 'block'; // Muestra el cronómetro
-                countdownButton.style.display = 'none'; // Oculta el botón
+                console.log("Botón de cronómetro clickeado."); // Depuración: Ver si el click funciona
+                countdownTimerElement.style.display = 'block'; 
+                countdownButton.style.display = 'none'; 
             });
+            updateCountdown(); // Llamada inicial para mostrar el tiempo correcto inmediatamente
         }
 
+        // Función para actualizar el cronómetro
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
 
-            // Cálculos para horas, minutos y segundos
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Formatear para que siempre tenga dos dígitos (ej. 05, 12)
             const formattedHours = String(hours).padStart(2, '0');
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
 
-            // Mostrar el resultado en el elemento del cronómetro
             if (distance > 0) {
                 countdownTimerElement.innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
             } else {
-                clearInterval(countdownInterval); // Detener el intervalo
-                countdownTimerElement.innerHTML = "00:00:00"; // Mostrar ceros
-                countdownButton.style.display = 'none'; // Asegurarse de que el botón esté oculto si el tiempo ya pasó
-                countdownTimerElement.style.display = 'block'; // Asegurarse de que el cronómetro esté visible en ceros
+                clearInterval(countdownInterval); 
+                countdownTimerElement.innerHTML = "00:00:00"; 
+                countdownButton.style.display = 'none'; 
+                countdownTimerElement.style.display = 'block'; 
             }
         }
     </script>
