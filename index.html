@@ -24,15 +24,18 @@
         body {
             display: flex;
             flex-direction: column; 
-            justify-content: center; /* Volvemos a centrar verticalmente */
+            /* CAMBIO CLAVE AQUÍ: Alineamos el contenido al inicio y dejamos el espacio libre al final */
+            justify-content: flex-start; /* Alinea los elementos al inicio del contenedor flex */
             align-items: center;
             min-height: 100vh; 
             margin: 0;
             font-family: Arial, sans-serif;
-            gap: 15px; 
+            gap: 15px; /* Espacio entre los elementos de nivel superior del body (cronómetro, contenedor de botones) */
             background-size: cover;
             background-position: center;
             transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out; 
+            /* Añadimos padding-bottom para que el último elemento no se pegue al final si es necesario */
+            padding-bottom: 20px; 
         }
 
         /* Clase inicial: fondo naranja */
@@ -46,17 +49,23 @@
             background-color: transparent; 
         }
 
+        /* NUEVO CONTENEDOR PARA LOS BOTONES CENTRALES */
+        .main-buttons-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espacio entre los botones dentro de este grupo */
+            align-items: center;
+            /* ESTO ES LO CLAVE PARA EMPUJAR HACIA ABAJO */
+            margin-top: auto; /* Empuja este grupo de botones hacia abajo */
+            margin-bottom: 5vh; /* Ajusta este valor para controlar qué tan cerca del fondo están */
+        }
+
         .button-container {
             text-align: center;
             position: relative; 
             z-index: 2;
         }
-
-        /* CAMBIO AQUÍ: Añadimos un margin-top al primer contenedor de botones para empujar todo el grupo hacia abajo */
-        .button-container:first-of-type { /* Selecciona solo el primer .button-container */
-            margin-top: 5vh; /* Puedes ajustar este valor (ej. 10vh, 15vh) para moverlo más o menos */
-        }
-
+        
         .main-button {
             background-color: #3CB371;
             color: #000000;
@@ -128,7 +137,7 @@
 
         /* ESTILOS PARA EL BOTÓN DE CRONÓMETRO Y EL CRONÓMETRO EN SÍ */
         .countdown-container {
-            position: fixed;
+            position: fixed; /* Mantenemos fixed para que no se mueva con el scroll */
             bottom: 20px;
             left: 20px; /* Posicionamos a la izquierda */
             z-index: 1000;
@@ -179,32 +188,34 @@
         <div id="countdown-timer">00:00:00</div>
     </div>
 
-    <div class="button-container">
-        <a href="https://script.google.com/macros/s/AKfycbwzrntBQ4oJAqj0LMbe5-sC1ZMDbu8bVYaeLXewa-0X/dev"
-           target="_blank" class="main-button">
-            INGRESA A WINNER EUROPA
-        </a>
-    </div>
+    <div class="main-buttons-group">
+        <div class="button-container">
+            <a href="https://script.google.com/macros/s/AKfycbwzrntBQ4oJAqj0LMbe5-sC1ZMDbu8bVYaeLXewa-0X/dev"
+               target="_blank" class="main-button">
+                INGRESA A WINNER EUROPA
+            </a>
+        </div>
 
-    <div class="button-container">
-        <a href="TU_ENLACE_DE_VIDEO_EN_VIVO_AQUI"
-           target="_blank" class="main-button watch-draw-button">
-            VER SORTEO EN VIVO
-        </a>
-    </div>
+        <div class="button-container">
+            <a href="TU_ENLACE_DE_VIDEO_EN_VIVO_AQUI"
+               target="_blank" class="main-button watch-draw-button">
+                VER SORTEO EN VIVO
+            </a>
+        </div>
 
-    <div class="button-container">
-        <a href="https://forms.gle/GvPKdeRVFPbBRWeB9"
-           target="_blank" class="main-button register-button">
-            REGÍSTRATE AQUÍ
-        </a>
-    </div>
+        <div class="button-container">
+            <a href="https://forms.gle/GvPKdeRVFPbBRWeB9"
+               target="_blank" class="main-button register-button">
+                REGÍSTRATE AQUÍ
+            </a>
+        </div>
 
-    <div class="button-container">
-        <a href="https://buy.stripe.com/8x2bITgGedDJbgl59C1kA00"
-           target="_blank" class="main-button payment-button">
-            PAGAR CON TARJETA
-        </a>
+        <div class="button-container">
+            <a href="https://buy.stripe.com/8x2bITgGedDJbgl59C1kA00"
+               target="_blank" class="main-button payment-button">
+                PAGAR CON TARJETA
+            </a>
+        </div>
     </div>
 
     <a href="https://wa.me/41782515441?text=Hola%2C%20quiero%20mas%20informacion%20sobre%20Winner%20Europa" 
