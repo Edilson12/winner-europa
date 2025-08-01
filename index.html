@@ -89,6 +89,16 @@
             background-color: #5560CD;
         }
 
+        /* NUEVO ESTILO PARA EL BOTÓN DE VER SORTEO */
+        .watch-draw-button {
+            background-color: #FFD700; /* Dorado o amarillo brillante */
+            color: #000000;
+        }
+
+        .watch-draw-button:hover {
+            background-color: #E0B500; /* Dorado más oscuro */
+        }
+
         .whatsapp-button {
             position: fixed;
             bottom: 20px;
@@ -173,6 +183,13 @@
     </div>
 
     <div class="button-container">
+        <a href="TU_ENLACE_DE_VIDEO_EN_VIVO_AQUI"
+           target="_blank" class="main-button watch-draw-button">
+            VER SORTEO EN VIVO
+        </a>
+    </div>
+
+    <div class="button-container">
         <a href="https://forms.gle/GvPKdeRVFPbBRWeB9"
            target="_blank" class="main-button register-button">
             REGÍSTRATE AQUÍ
@@ -224,7 +241,6 @@
         const countdownTimerElement = document.getElementById('countdown-timer');
         const countdownButton = document.getElementById('countdownButton');
 
-        // Función para configurar el cronómetro
         function setupCountdown() {
             // OCULTAMOS EL CRONÓMETRO AL INICIARSE LA PÁGINA (ESTABA VISIBLE POR CSS)
             countdownTimerElement.style.display = 'none'; 
@@ -244,32 +260,28 @@
             //    new Date().getTime() + (24 * 60 * 60 * 1000);
             //
             //    PON LA FECHA DE TU SORTEO FINALIZADO O FUTURO AQUÍ:
-            countdownDate = new Date(2025, 7, 2, 21, 33, 0).getTime(); // EJEMPLO: 2 de Agosto de 2025 a las 09:33:00 AM
+            countdownDate = new Date(2025, 7, 2, 9, 33, 0).getTime(); // EJEMPLO: 2 de Agosto de 2025 a las 09:33:00 AM
             // ======================================================================
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             // ======================================================================
 
             const countdownInterval = setInterval(updateCountdown, 1000);
 
-            // Listener para el botón, para mostrar el cronómetro
             countdownButton.addEventListener('click', () => {
-                countdownTimerElement.style.display = 'block'; // Muestra el cronómetro
-                countdownButton.style.display = 'none'; // Oculta el botón
+                countdownTimerElement.style.display = 'block'; 
+                countdownButton.style.display = 'none'; 
             });
-            updateCountdown(); // Llamada inicial para mostrar el tiempo correcto inmediatamente
+            updateCountdown(); 
         }
 
-        // Función para actualizar el cronómetro
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
 
-            // Cálculos para horas, minutos y segundos
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Formatear para que siempre tenga dos dígitos (ej. 05, 12)
             const formattedHours = String(hours).padStart(2, '0');
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
@@ -279,8 +291,8 @@
             } else {
                 clearInterval(countdownInterval); 
                 countdownTimerElement.innerHTML = "00:00:00"; 
-                countdownButton.style.display = 'none'; // Asegurarse de que el botón esté oculto si el tiempo ya pasó
-                countdownTimerElement.style.display = 'block'; // Asegurarse de que el cronómetro esté visible en ceros
+                countdownButton.style.display = 'none'; 
+                countdownTimerElement.style.display = 'block'; 
             }
         }
     </script>
