@@ -24,9 +24,7 @@
         body {
             display: flex;
             flex-direction: column; 
-            /* CAMBIO AQUÍ: Alineación al inicio y padding-top para desplazar */
-            justify-content: flex-start; /* Alinea los elementos al inicio del contenedor flex */
-            padding-top: 10vh; /* Empuja el contenido 10% de la altura de la pantalla hacia abajo */
+            justify-content: center; /* Volvemos a centrar verticalmente */
             align-items: center;
             min-height: 100vh; 
             margin: 0;
@@ -52,6 +50,11 @@
             text-align: center;
             position: relative; 
             z-index: 2;
+        }
+
+        /* CAMBIO AQUÍ: Añadimos un margin-top al primer contenedor de botones para empujar todo el grupo hacia abajo */
+        .button-container:first-of-type { /* Selecciona solo el primer .button-container */
+            margin-top: 5vh; /* Puedes ajustar este valor (ej. 10vh, 15vh) para moverlo más o menos */
         }
 
         .main-button {
