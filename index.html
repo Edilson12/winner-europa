@@ -24,17 +24,15 @@
         body {
             display: flex;
             flex-direction: column; 
-            /* CAMBIO CLAVE AQUÍ: Alineamos el contenido al inicio y dejamos el espacio libre al final */
-            justify-content: flex-start; /* Alinea los elementos al inicio del contenedor flex */
+            justify-content: flex-start; 
             align-items: center;
             min-height: 100vh; 
             margin: 0;
             font-family: Arial, sans-serif;
-            gap: 15px; /* Espacio entre los elementos de nivel superior del body (cronómetro, contenedor de botones) */
+            gap: 15px; 
             background-size: cover;
             background-position: center;
             transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out; 
-            /* Añadimos padding-bottom para que el último elemento no se pegue al final si es necesario */
             padding-bottom: 20px; 
         }
 
@@ -49,15 +47,15 @@
             background-color: transparent; 
         }
 
-        /* NUEVO CONTENEDOR PARA LOS BOTONES CENTRALES */
+        /* CONTENEDOR PARA LOS BOTONES CENTRALES */
         .main-buttons-group {
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Espacio entre los botones dentro de este grupo */
+            gap: 15px; 
             align-items: center;
-            /* ESTO ES LO CLAVE PARA EMPUJAR HACIA ABAJO */
-            margin-top: auto; /* Empuja este grupo de botones hacia abajo */
-            margin-bottom: 5vh; /* Ajusta este valor para controlar qué tan cerca del fondo están */
+            margin-top: auto; 
+            /* CAMBIO AQUÍ: Reducimos el margen inferior para que suban */
+            margin-bottom: 10vh; /* Ajustado de 5vh a 2vh */
         }
 
         .button-container {
@@ -104,12 +102,12 @@
         }
 
         .watch-draw-button {
-            background-color: #FFD700; /* Dorado o amarillo brillante */
+            background-color: #FFD700; 
             color: #000000;
         }
 
         .watch-draw-button:hover {
-            background-color: #E0B500; /* Dorado más oscuro */
+            background-color: #E0B500; 
         }
 
         .whatsapp-button {
@@ -137,17 +135,17 @@
 
         /* ESTILOS PARA EL BOTÓN DE CRONÓMETRO Y EL CRONÓMETRO EN SÍ */
         .countdown-container {
-            position: fixed; /* Mantenemos fixed para que no se mueva con el scroll */
+            position: fixed; 
             bottom: 20px;
-            left: 20px; /* Posicionamos a la izquierda */
+            left: 20px; 
             z-index: 1000;
-            display: flex; /* Para alinear el botón y el cronómetro */
-            flex-direction: column; /* Apilarán si no hay espacio */
-            align-items: flex-start; /* Alinear a la izquierda */
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
         }
 
         .countdown-button {
-            background-color: #FF5733; /* Un rojo anaranjado */
+            background-color: #FF5733; 
             color: white;
             padding: 10px 15px;
             font-size: 16px;
@@ -157,24 +155,24 @@
             cursor: pointer;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             transition: background-color 0.3s ease;
-            margin-bottom: 5px; /* Pequeño espacio entre botón y cronómetro */
-            min-width: 220px; /* Ancho para que quepa el texto */
+            margin-bottom: 5px; 
+            min-width: 220px; 
             text-align: center;
         }
 
         .countdown-button:hover {
-            background-color: #C70039; /* Rojo más oscuro al pasar el ratón */
+            background-color: #C70039; 
         }
 
         #countdown-timer {
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            background-color: rgba(0, 0, 0, 0.7); 
             color: white;
             padding: 8px 12px;
             border-radius: 5px;
-            font-size: 24px; /* Tamaño grande para el cronómetro */
+            font-size: 24px; 
             font-weight: bold;
-            display: block; /* Visible por defecto en CSS, JavaScript lo ocultará */
-            min-width: 220px; /* Mismo ancho que el botón */
+            display: block; 
+            min-width: 220px; 
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
@@ -236,7 +234,7 @@
             setTimeout(() => {
                 body.classList.remove('initial-bg');
                 body.classList.add('image-bg');
-            }, 2000); // 2 segundos
+            }, 2000); 
         };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -247,7 +245,6 @@
                     body.classList.add('image-bg');
                 }, 2000);
             }
-            // Inicia el cronómetro cuando el DOM esté listo
             setupCountdown(); 
         });
 
@@ -257,27 +254,14 @@
         const countdownButton = document.getElementById('countdownButton');
 
         function setupCountdown() {
-            // OCULTAMOS EL CRONÓMETRO AL INICIARSE LA PÁGINA (ESTABA VISIBLE POR CSS)
             countdownTimerElement.style.display = 'none'; 
 
             // ======================================================================
             // >>>>>>>>>>>>>>>>>> AJUSTA LA FECHA Y HORA DEL SORTEO AQUÍ <<<<<<<<<<<<<<<<<<<
             // ======================================================================
-            // Para "activar" o "reiniciar" el cronómetro globalmente:
-            // 1. Calcula la fecha y hora EXACTA en que quieres que termine el sorteo.
-            //    Ejemplo: 1 de Diciembre de 2025 a las 10:00:00 PM (22:00:00).
-            //    Formato: Año, Mes-1 (Enero es 0), Día, Hora, Minuto, Segundo.
-            //    Recuerda que los meses en JavaScript van de 0 (Enero) a 11 (Diciembre).
-            //    Para 1 de Diciembre de 2025 a las 10:00:00 PM (22:00:00):
-            //    new Date(2025, 11, 1, 22, 0, 0).getTime();
-            //
-            //    Si quieres que termine en exactamente 24 horas DESDE AHORA (cuando haces el cambio):
-            //    new Date().getTime() + (24 * 60 * 60 * 1000);
-            //
-            //    PON LA FECHA DE TU SORTEO FINALIZADO O FUTURO AQUÍ:
+            // PON LA FECHA DE TU SORTEO FINALIZADO O FUTURO AQUÍ:
+            // La fecha actual es 2 de agosto de 2025.
             countdownDate = new Date(2025, 7, 2, 9, 33, 0).getTime(); // EJEMPLO: 2 de Agosto de 2025 a las 09:33:00 AM
-            // ======================================================================
-            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             // ======================================================================
 
             const countdownInterval = setInterval(updateCountdown, 1000);
