@@ -20,6 +20,8 @@
     
     <link rel="manifest" href="manifest.json"> 
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style> 
         body {
             display: flex;
@@ -54,8 +56,7 @@
             gap: 15px; 
             align-items: center;
             margin-top: auto; 
-            /* CAMBIO AQUÍ: Reducimos el margen inferior para que suban */
-            margin-bottom: 10vh; /* Ajustado de 5vh a 2vh */
+            margin-bottom: 12vh; 
         }
 
         .button-container {
@@ -122,7 +123,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            /* CAMBIO AQUÍ: Ajustamos el tamaño del icono de Font Awesome */
+            font-size: 30px; 
             text-decoration: none;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
@@ -220,7 +222,7 @@
        target="_blank" 
        class="whatsapp-button" 
        title="Comunícate con nosotros por WhatsApp">
-        &#x2709; 
+        <i class="fab fa-whatsapp"></i> 
     </a>
 
     <script>
@@ -260,7 +262,6 @@
             // >>>>>>>>>>>>>>>>>> AJUSTA LA FECHA Y HORA DEL SORTEO AQUÍ <<<<<<<<<<<<<<<<<<<
             // ======================================================================
             // PON LA FECHA DE TU SORTEO FINALIZADO O FUTURO AQUÍ:
-            // La fecha actual es 2 de agosto de 2025.
             countdownDate = new Date(2025, 7, 2, 9, 33, 0).getTime(); // EJEMPLO: 2 de Agosto de 2025 a las 09:33:00 AM
             // ======================================================================
 
