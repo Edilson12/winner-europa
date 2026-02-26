@@ -8,14 +8,14 @@
   "theme_color": "#FFA500",
   "icons": [
     {
-      "src": "trebol5.PNG",
+      "src": "trebol5.png",
       "sizes": "192x192",
-      "type": "image/PNG"
+      "type": "image/png"
     },
     {
-      "src": "trebol5.PNG",
+      "src": "trebol5.png",
       "sizes": "512x512",
-      "type": "image/PNG"
+      "type": "image/png"
     }
   ]
 }
