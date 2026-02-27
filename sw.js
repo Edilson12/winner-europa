@@ -1,10 +1,11 @@
-const CACHE_NAME = 'winner-europa-v2';
+const CACHE_NAME = 'winner-europa-v3';
 
 const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/trebol5.png'
+  '/trebol-192.png',
+  '/trebol-512.png'
 ];
 
 self.addEventListener('install', event => {
