@@ -180,6 +180,13 @@
         }
     </style>
 </head>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js")
+    .then(() => console.log("Service Worker registrado"))
+    .catch(err => console.error("SW error", err));
+}
+</script>
 <body class="initial-bg">
     <div class="countdown-container">
         <button id="countdownButton" class="countdown-button">
