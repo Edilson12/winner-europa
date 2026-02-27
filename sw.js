@@ -1,4 +1,4 @@
-const CACHE_NAME = 'winner-europa-v3';
+const CACHE_NAME = 'winner-europa-v7';
 
 const urlsToCache = [
   '/',
