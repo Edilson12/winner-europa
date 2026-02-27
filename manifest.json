@@ -1,21 +1,24 @@
 {
+  "id": "/winner-europa/index.html",
   "name": "Winner Europa",
   "short_name": "WinnerEuropa",
   "description": "Tu plataforma de apuestas en Europa",
-  "start_url": "./index.html",
+  "start_url": "/winner-europa/index.html",
   "display": "standalone",
   "background_color": "#FFA500",
   "theme_color": "#FFA500",
   "icons": [
     {
-      "src": "trebol5.png",
+      "src": "trebol-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "trebol5.png",
+      "src": "trebol-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
