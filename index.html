@@ -1,307 +1,144 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Winner Europa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winner Europa</title>
 
-    <link rel="icon" type="image/png" href="trebol5.png">
-    <link rel="apple-touch-icon" href="trebol5.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="trebol5.png">
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json">
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Winner Europa">
+  <!-- Tema -->
+  <meta name="theme-color" content="#FFA500">
 
-    <link rel="icon" sizes="192x192" href="trebol5.png">
-    <link rel="shortcut icon" sizes="196x196" href="trebol5.png">
+  <!-- iOS (no afecta Android, pero correcto) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Winner Europa">
 
-    <meta name="theme-color" content="#FFA500">
-    
-    <link rel="manifest" href="manifest.json"> 
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style> 
-        body {
-            display: flex;
-            flex-direction: column; 
-            justify-content: flex-start; 
-            align-items: center;
-            min-height: 100vh; 
-            margin: 0;
-            font-family: Arial, sans-serif;
-            gap: 15px; 
-            background-size: cover;
-            background-position: center;
-            transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out; 
-            padding-bottom: 20px; 
-        }
+  <!-- Estilos externos -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        /* Clase inicial: fondo naranja */
-        body.initial-bg {
-            background-color: #FFA500;
-        }
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      gap: 15px;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out;
+      padding-bottom: 20px;
+    }
 
-        /* Clase para la imagen de fondo */
-        body.image-bg {
-            background-image: url('fondo_winner.jpg');
-            background-color: transparent; 
-        }
+    body.initial-bg { background-color: #FFA500; }
+    body.image-bg {
+      background-image: url('fondo_winner.jpg');
+      background-color: transparent;
+    }
 
-        /* CONTENEDOR PARA LOS BOTONES CENTRALES */
-        .main-buttons-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; 
-            align-items: center;
-            margin-top: auto; 
-            margin-bottom: 12vh; 
-        }
+    .main-buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 12vh;
+    }
 
-        .button-container {
-            text-align: center;
-            position: relative; 
-            z-index: 2;
-        }
-        
-        .main-button {
-            background-color: #3CB371;
-            color: #000000;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-            min-width: 260px;
-            box-sizing: border-box;
-        }
+    .main-button {
+      background-color: #3CB371;
+      color: #000;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      min-width: 260px;
+      text-align: center;
+    }
 
-        .main-button:hover {
-            background-color: #2E8B57;
-        }
+    .register-button { background-color: #4682B4; }
+    .payment-button { background-color: #6772E5; color: white; }
+    .watch-draw-button { background-color: #FFD700; }
 
-        .register-button {
-            background-color: #4682B4;
-        }
-
-        .register-button:hover {
-            background-color: #366792;
-        }
-
-        .payment-button {
-            background-color: #6772E5;
-            color: white;
-        }
-
-        .payment-button:hover {
-            background-color: #5560CD;
-        }
-
-        .watch-draw-button {
-            background-color: #FFD700; 
-            color: #000000;
-        }
-
-        .watch-draw-button:hover {
-            background-color: #E0B500; 
-        }
-
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* CAMBIO AQUÍ: Ajustamos el tamaño del icono de Font Awesome */
-            font-size: 30px; 
-            text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transition: background-color 0.3s ease;
-        }
-
-        .whatsapp-button:hover {
-            background-color: #1DA851;
-        }
-
-        /* ESTILOS PARA EL BOTÓN DE CRONÓMETRO Y EL CRONÓMETRO EN SÍ */
-        .countdown-container {
-            position: fixed; 
-            bottom: 20px;
-            left: 20px; 
-            z-index: 1000;
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-        }
-
-        .countdown-button {
-            background-color: #FF5733; 
-            color: white;
-            padding: 10px 15px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: background-color 0.3s ease;
-            margin-bottom: 5px; 
-            min-width: 220px; 
-            text-align: center;
-        }
-
-        .countdown-button:hover {
-            background-color: #C70039; 
-        }
-
-        #countdown-timer {
-            background-color: rgba(0, 0, 0, 0.7); 
-            color: white;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 24px; 
-            font-weight: bold;
-            display: block; 
-            min-width: 220px; 
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-    </style>
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+  </style>
 </head>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js")
-    .then(() => console.log("Service Worker registrado"))
-    .catch(err => console.error("SW error", err));
-}
-</script>
+
 <body class="initial-bg">
-    <div class="countdown-container">
-        <button id="countdownButton" class="countdown-button">
-            El sorteo comienza en...
-        </button>
-        <div id="countdown-timer">00:00:00</div>
-    </div>
 
-    <div class="main-buttons-group">
-        <div class="button-container">
-            <a href="https://script.google.com/macros/s/AKfycbzqzpN-U77exMbYnqNCJEv7EHTHenFA90pbWdf2nhIdLd8lhP3AHhET6v6dW4A0FYuihg/exec"
-               target="_blank" class="main-button">
-                INGRESA A WINNER EUROPA
-            </a>
-        </div>
-
-        <div class="button-container">
-            <a href="https://youtube.com/live/227ytJXBtfQ?feature=share"
-               target="_blank" class="main-button watch-draw-button">
-                VER SORTEO EN VIVO
-            </a>
-        </div>
-
-        <div class="button-container">
-            <a href="https://forms.gle/GvPKdeRVFPbBRWeB9"
-               target="_blank" class="main-button register-button">
-                REGÍSTRATE AQUÍ
-            </a>
-        </div>
-
-        <div class="button-container">
-            <a href="https://buy.stripe.com/8x2bITgGedDJbgl59C1kA00"
-               target="_blank" class="main-button payment-button">
-                PAGAR CON TARJETA
-            </a>
-        </div>
-    </div>
-
-    <a href="https://wa.me/41782515441?text=Hola%2C%20quiero%20mas%20informacion%20sobre%20Winner%20Europa" 
-       target="_blank" 
-       class="whatsapp-button" 
-       title="Comunícate con nosotros por WhatsApp">
-        <i class="fab fa-whatsapp"></i> 
+  <div class="main-buttons-group">
+    <a class="main-button"
+       target="_blank"
+       href="https://script.google.com/macros/s/AKfycbzqzpN-U77exMbYnqNCJEv7EHTHenFA90pbWdf2nhIdLd8lhP3AHhET6v6dW4A0FYuihg/exec">
+      INGRESA A WINNER EUROPA
     </a>
 
-    <script>
-        // Aseguramos que la imagen de fondo se precargue
-        const backgroundImageURL = 'fondo_winner.jpg';
-        const img = new Image();
-        img.src = backgroundImageURL;
+    <a class="main-button watch-draw-button"
+       target="_blank"
+       href="https://youtube.com/live/227ytJXBtfQ">
+      VER SORTEO EN VIVO
+    </a>
 
-        img.onload = function() {
-            const body = document.body;
-            setTimeout(() => {
-                body.classList.remove('initial-bg');
-                body.classList.add('image-bg');
-            }, 2000); 
-        };
+    <a class="main-button register-button"
+       target="_blank"
+       href="https://forms.gle/GvPKdeRVFPbBRWeB9">
+      REGÍSTRATE AQUÍ
+    </a>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            if (img.complete) {
-                const body = document.body;
-                setTimeout(() => {
-                    body.classList.remove('initial-bg');
-                    body.classList.add('image-bg');
-                }, 2000);
-            }
-            setupCountdown(); 
-        });
+    <a class="main-button payment-button"
+       target="_blank"
+       href="https://buy.stripe.com/8x2bITgGedDJbgl59C1kA00">
+      PAGAR CON TARJETA
+    </a>
+  </div>
 
-        // LÓGICA DEL CRONÓMETRO
-        let countdownDate; 
-        const countdownTimerElement = document.getElementById('countdown-timer');
-        const countdownButton = document.getElementById('countdownButton');
+  <a class="whatsapp-button"
+     target="_blank"
+     href="https://wa.me/41782515441">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-        function setupCountdown() {
-            countdownTimerElement.style.display = 'none'; 
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { scope: '/winner-europa/' });
+    }
+  </script>
 
-            // ======================================================================
-            // >>>>>>>>>>>>>>>>>> AJUSTA LA FECHA Y HORA DEL SORTEO AQUÍ <<<<<<<<<<<<<<<<<<<
-            // ======================================================================
-            // PON LA FECHA DE TU SORTEO FINALIZADO O FUTURO AQUÍ:
-            countdownDate = new Date(2025, 7, 2, 9, 33, 0).getTime(); // EJEMPLO: 2 de Agosto de 2025 a las 09:33:00 AM
-            // ======================================================================
+  <script>
+    const img = new Image();
+    img.src = 'fondo_winner.jpg';
+    img.onload = () => {
+      setTimeout(() => {
+        document.body.classList.remove('initial-bg');
+        document.body.classList.add('image-bg');
+      }, 1500);
+    };
+  </script>
 
-            const countdownInterval = setInterval(updateCountdown, 1000);
-
-            countdownButton.addEventListener('click', () => {
-                countdownTimerElement.style.display = 'block'; 
-                countdownButton.style.display = 'none'; 
-            });
-            updateCountdown(); 
-        }
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            const formattedHours = String(hours).padStart(2, '0');
-            const formattedMinutes = String(minutes).padStart(2, '0');
-            const formattedSeconds = String(seconds).padStart(2, '0');
-
-            if (distance > 0) {
-                countdownTimerElement.innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-            } else {
-                clearInterval(countdownInterval); 
-                countdownTimerElement.innerHTML = "00:00:00"; 
-                countdownButton.style.display = 'none'; 
-                countdownTimerElement.style.display = 'block'; 
-            }
-        }
-    </script>
 </body>
 </html>
