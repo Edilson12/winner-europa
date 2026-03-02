@@ -1,8 +1,7 @@
-const CACHE_NAME = 'winner-europa-v10';
+const CACHE_NAME = 'winner-europa-v11';
 
 const ASSETS = [
   '/winner-europa/',
-  '/winner-europa/index.html',
   '/winner-europa/manifest.json',
   '/winner-europa/trebol-192.png',
   '/winner-europa/trebol-512.png',
@@ -10,10 +9,10 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
@@ -26,7 +25,16 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  const req = event.request;
+
+  // 🔥 HTML SIEMPRE desde red
+  if (req.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(fetch(req));
+    return;
+  }
+
+  // Assets: cache primero
   event.respondWith(
-    caches.match(event.request).then(res => res || fetch(event.request))
+    caches.match(req).then(res => res || fetch(req))
   );
 });
