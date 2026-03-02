@@ -97,13 +97,18 @@
       INGRESA A WINNER EUROPA
     </a>
              
-    <a class="main-button watch-draw-button"
-   href="https://youtube.com/shorts/VxICmxyrBsY?feature=share"
+    <a id="drawLink"
+   class="main-button watch-draw-button"
    target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Ver sorteo en vivo en YouTube">
+   rel="noopener noreferrer">
   VER SORTEO EN VIVO
-    </a>
+</a>
+
+<script>
+  const videoBase = "https://youtube.com/shorts/GJcf8PywPbo";
+  document.getElementById("drawLink").href =
+    videoBase + "?t=" + Date.now();
+</script>
 
     <a class="main-button register-button"
        target="_blank"
