@@ -5,18 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Winner Europa</title>
 
-  <!-- Manifest PWA -->
   <link rel="manifest" href="manifest.json">
-
-  <!-- Tema -->
   <meta name="theme-color" content="#FFA500">
 
-  <!-- iOS (no afecta Android, pero correcto) -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Winner Europa">
 
-  <!-- Estilos externos -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -98,17 +93,11 @@
     </a>
              
     <a id="drawLink"
-   class="main-button watch-draw-button"
-   target="_blank"
-   rel="noopener noreferrer">
-  VER SORTEO EN VIVO
+       class="main-button watch-draw-button"
+       target="_blank"
+       rel="noopener noreferrer">
+      CARGANDO...
     </a>
-
-    <script>
-  const videoBase = "https://youtube.com/live/BZuDP44Zj6s?feature=share";
-  document.getElementById("drawLink").href =
-    videoBase + "?t=" + Date.now();
-   </script>
 
     <a class="main-button register-button"
        target="_blank"
@@ -128,6 +117,27 @@
      href="https://wa.me/41782515441">
     <i class="fab fa-whatsapp"></i>
   </a>
+
+  <!-- 🔥 BOTÓN DINÁMICO -->
+  <script>
+    fetch("/winner-europa/live.json?t=" + Date.now())
+      .then(response => response.json())
+      .then(data => {
+        const btn = document.getElementById("drawLink");
+        if (data.live_url && data.live_url.trim() !== "") {
+          btn.href = data.live_url;
+          btn.innerText = "VER SORTEO EN VIVO";
+        } else {
+          btn.innerText = "PRÓXIMO SORTEO";
+          btn.href = "#";
+        }
+      })
+      .catch(() => {
+        const btn = document.getElementById("drawLink");
+        btn.innerText = "NO DISPONIBLE";
+        btn.href = "#";
+      });
+  </script>
 
   <!-- Service Worker -->
   <script>
