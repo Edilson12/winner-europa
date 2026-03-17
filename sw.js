@@ -1,4 +1,4 @@
-const CACHE_NAME = 'winner-europa-v11';
+const CACHE_NAME = 'winner-europa-v12';
 
 const ASSETS = [
   '/winner-europa/',
