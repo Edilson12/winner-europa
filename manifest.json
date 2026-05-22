@@ -1,23 +1,26 @@
 {
   "id": "/winner-europa/",
   "name": "Winner Europa",
-  "short_name": "Winner",
+  "short_name": "Winner Europa",
   "description": "Plataforma Winner Europa",
   "start_url": "/winner-europa/",
   "scope": "/winner-europa/",
   "display": "standalone",
-  "background_color": "#FFA500",
-  "theme_color": "#FFA500",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "/winner-europa/trebol-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/winner-europa/trebol-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

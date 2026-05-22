@@ -1,11 +1,13 @@
 const CACHE_NAME = 'winner-europa-v12';
 
+// 🛠️ Rutas corregidas para compatibilidad total con GitHub Pages
 const ASSETS = [
-  '/winner-europa/',
-  '/winner-europa/manifest.json',
-  '/winner-europa/trebol-192.png',
-  '/winner-europa/trebol-512.png',
-  '/winner-europa/fondo_winner.jpg'
+  './',
+  './index.html', // Asegúrate de que tu archivo principal se llame así
+  './manifest.json',
+  './trebol-192.png',
+  './trebol-512.png',
+  './fondo_winner.jpg'
 ];
 
 self.addEventListener('install', event => {

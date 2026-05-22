@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Winner Europa</title>
 
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#FFA500">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#000000">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Winner Europa">
 
   <link rel="stylesheet"
@@ -31,7 +31,8 @@
       padding-bottom: 20px;
     }
 
-    body.initial-bg { background-color: #FFA500; }
+    /* Nota: Si decidiste mantener el fondo naranja inicial, puedes cambiar #000000 por #FFA500 */
+    body.initial-bg { background-color: #000000; }
     body.image-bg {
       background-image: url('fondo_winner.jpg');
       background-color: transparent;
@@ -91,7 +92,7 @@
        href="https://script.google.com/macros/s/AKfycbzqzpN-U77exMbYnqNCJEv7EHTHenFA90pbWdf2nhIdLd8lhP3AHhET6v6dW4A0FYuihg/exec">
       INGRESA A WINNER EUROPA
     </a>
-             
+               
     <a id="drawLink"
        class="main-button watch-draw-button"
        target="_blank"
@@ -118,7 +119,6 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <!-- 🔥 BOTÓN DINÁMICO -->
   <script>
     fetch("/winner-europa/live.json?t=" + Date.now())
       .then(response => response.json())
@@ -139,10 +139,13 @@
       });
   </script>
 
-  <!-- Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js', { scope: '/winner-europa/' });
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('¡Winner Europa lista para instalar!', reg))
+          .catch(err => console.error('Error al registrar Service Worker:', err));
+      });
     }
   </script>
 
