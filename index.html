@@ -27,15 +27,10 @@
       gap: 15px;
       background-size: cover;
       background-position: center;
+      /* Transición suave de 1.5 segundos entre cambios de imagen o color */
       transition: background-image 1.5s ease-in-out, background-color 1.5s ease-in-out;
       padding-bottom: 20px;
-    }
-
-    /* Nota: Si decidiste mantener el fondo naranja inicial, puedes cambiar #000000 por #FFA500 */
-    body.initial-bg { background-color: #000000; }
-    body.image-bg {
-      background-image: url('fondo_winner.jpg');
-      background-color: transparent;
+      background-color: #000000;
     }
 
     .main-buttons-group {
@@ -84,7 +79,7 @@
   </style>
 </head>
 
-<body class="initial-bg">
+<body>
 
   <div class="main-buttons-group">
     <a class="main-button"
@@ -119,6 +114,7 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- Script para verificar el estado del en vivo en YouTube -->
   <script>
     fetch("/winner-europa/live.json?t=" + Date.now())
       .then(response => response.json())
@@ -139,6 +135,7 @@
       });
   </script>
 
+  <!-- Script del Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -149,15 +146,35 @@
     }
   </script>
 
+  <!-- Script para el carrusel/fondo dinámico cada 15 segundos -->
   <script>
-    const img = new Image();
-    img.src = 'fondo_winner.jpg';
-    img.onload = () => {
-      setTimeout(() => {
-        document.body.classList.remove('initial-bg');
-        document.body.classList.add('image-bg');
-      }, 1500);
-    };
+    // Lista con las 3 imágenes de fondo
+    // Nota: Reemplaza 'fondo_winner2.jpg' y 'fondo_winner3.jpg' con los nombres reales de tus archivos.
+    const images = [
+      'fondo_winner.jpg',
+      'fondo_winner2.jpg',
+      'fondo_winner3.jpg'
+    ];
+
+    // Precargamos todas las imágenes en la memoria del navegador para evitar parpadeos
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    let currentIndex = 0;
+
+    function changeBackgroundImage() {
+      document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
+      // Avanza al siguiente índice y vuelve al inicio (0) al llegar al final
+      currentIndex = (currentIndex + 1) % images.length;
+    }
+
+    // Primera ejecución inmediata al cargar la página
+    changeBackgroundImage();
+
+    // Cambia de imagen automáticamente cada 15.000 ms (15 segundos)
+    setInterval(changeBackgroundImage, 15000);
   </script>
 
 </body>
