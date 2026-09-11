@@ -146,17 +146,16 @@
     }
   </script>
 
-  <!-- Script para el carrusel/fondo dinámico cada 15 segundos -->
+  <!-- Script para el carrusel/fondo dinámico cada 5 segundos -->
   <script>
     // Lista con las 3 imágenes de fondo
-    // Nota: Reemplaza 'fondo_winner2.jpg' y 'fondo_winner3.jpg' con los nombres reales de tus archivos.
     const images = [
       'fondo_winner.jpg',
       'fondo_winner2.jpg',
       'fondo_winner3.jpg'
     ];
 
-    // Precargamos todas las imágenes en la memoria del navegador para evitar parpadeos
+    // Precarga de imágenes en memoria para evitar parpadeos
     images.forEach(src => {
       const img = new Image();
       img.src = src;
@@ -166,15 +165,15 @@
 
     function changeBackgroundImage() {
       document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
-      // Avanza al siguiente índice y vuelve al inicio (0) al llegar al final
+      // Avanza a la siguiente imagen y reinicia al llegar a la última
       currentIndex = (currentIndex + 1) % images.length;
     }
 
-    // Primera ejecución inmediata al cargar la página
+    // Primera ejecución inmediata al cargar
     changeBackgroundImage();
 
-    // Cambia de imagen automáticamente cada 15.000 ms (15 segundos)
-    setInterval(changeBackgroundImage, 15000);
+    // Cambia de imagen automáticamente cada 5000 ms (5 segundos)
+    setInterval(changeBackgroundImage, 5000);
   </script>
 
 </body>
