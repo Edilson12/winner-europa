@@ -90,7 +90,7 @@
     <a class="main-button"
        target="_blank"
        href="https://script.google.com/macros/s/AKfycbzqzpN-U77exMbYnqNCJEv7EHTHenFA90pbWdf2nhIdLd8lhP3AHhET6v6dW4A0FYuihg/exec">
-      ELIGE TU NUMERO GANADOR PARA HOY
+      ELIGE TU NUMERO PARA HOY
     </a>
                
     <a id="drawLink"
@@ -126,7 +126,7 @@
         const btn = document.getElementById("drawLink");
         if (data.live_url && data.live_url.trim() !== "") {
           btn.href = data.live_url;
-          btn.innerText = "VER SORTEO EN VIVO";
+          btn.innerText = "VER YouTube EN VIVO";
         } else {
           btn.innerText = "PRÓXIMO SORTEO";
           btn.href = "#";
